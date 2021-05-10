@@ -5,23 +5,26 @@
     <title>JS message</title>
     <script>
         window.onload = function () {
-          var form = document.getElementById("message-form"),
-          messageField = document.getElementById("test-message");
+            var form = document.getElementById("message-form"),
+            messageField = document.getElementById("test-message");
 
-          messageField.select();
-
-          form.onsubmit = function () {
-            console.log(messageField.value);
-            window.postMessage(messageField.value);
-            return false;
-          };
+            form.onsubmit = function () {
+                var message = messageField.value
+                console.log(message);
+                if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.messageHandler) {
+                    window.webkit.messageHandlers.messageHandler.postMessage({
+                        "message": message
+                    });
+                }
+                return false;
+            };
         };
     </script>
   </head>
   <body>
     <form id="message-form" action="/">
 			<input type="text" id="test-message" value="Hello world!">
-			<input type="submit" value="postMessage">
+			<input type="submit" value="Post Message">
 		</form>
   </body>
 </html>
