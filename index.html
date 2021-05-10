@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>JS message</title>
+    <script>
+        window.onload = function () {
+          var form = document.getElementById("message-form"),
+          messageField = document.getElementById("test-message");
+
+          messageField.select();
+
+          form.onsubmit = function () {
+            console.log(messageField.value);
+            window.postMessage(messageField.value);
+            return false;
+          };
+        };
+    </script>
+  </head>
+  <body>
+    <form id="message-form" action="/">
+			<input type="text" id="test-message" value="Hello world!">
+			<input type="submit" value="postMessage">
+		</form>
+  </body>
+</html>
