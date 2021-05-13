@@ -4,6 +4,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>JS message</title>
     <script>
+        function displayResponse(response) {
+            responseField = document.getElementById("test-response");
+            responseField.value = response.data;
+        }
+
+        function postMessage(message) {
+            window.postMessage(message);
+        }
+
+        window.addEventListener('message', displayResponse, false);
+        
         window.onload = function () {
             var form = document.getElementById("message-form"),
             messageField = document.getElementById("test-message");
@@ -25,6 +36,8 @@
     <form id="message-form" action="/">
 			<input type="text" id="test-message" value="Hello world!">
 			<input type="submit" value="Post Message">
+      <br>
+      <input type="text" id="test-response" value="">
 		</form>
   </body>
 </html>
