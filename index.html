@@ -9,12 +9,12 @@
             responseField.value = response.data;
         }
 
-        function postMessage(message) {
+        function postWindowMessage(message) {
             window.postMessage(message);
         }
 
         window.addEventListener('message', displayResponse, false);
-        
+
         window.onload = function () {
             var form = document.getElementById("message-form"),
             messageField = document.getElementById("test-message");
